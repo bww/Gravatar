@@ -8,7 +8,8 @@ The Gist
 
 A Gravatar image view, ```GRImageView```, functions essentially like a ```UIImageView```, except
 instead of providing it with an image to display, you provide it with the email address of the
-user whose Gravatar image you want to display.
+user whose Gravatar image you want to display. ```GRImageView``` will automatically fetch the
+image from the Gravatar service and display it without any additional work on your part.
 
 There are a few options, such as whether or not Gravatar images are cached for offline use and
 the placeholder image you want to display while an image is loading, but you can minimally get by
