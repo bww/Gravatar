@@ -11,14 +11,12 @@ instead of providing it with an image to display, you provide it with the email 
 user whose Gravatar image you want to display. ```GRImageView``` will automatically fetch the
 image from the Gravatar service and display it without any additional work on your part.
 
-There are a few options, such as whether or not Gravatar images are cached for offline use and
-the placeholder image you want to display while an image is loading, but you can minimally get by
-with just the following:
+Minimally, all you need to display a Gravatar image is the following:
 
 ```objc
-GRImageView *gravatarImage = [[GRImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-gravatarImage.emailAddress = @"some.user@gmail.com";
-[someView addSubview:gravatarImage];
+GRImageView *gravatarImageView = [[GRImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+gravatarImageView.emailAddress = @"some.user@gmail.com";
+[someView addSubview:gravatarImageView];
 ```
 
 Animation
