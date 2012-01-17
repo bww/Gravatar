@@ -31,7 +31,9 @@ Caching
 
 You can instruct ```GRImageView``` to cache images it fetches from the Gravatar service on the
 device so they are available for later offline use.  Caching can be turned on or off via the
-```allowImageCaching``` property.  Caching is off by default.
+```allowImageCaching``` property.  Caching is off by default and is specific to each individual
+instance of ```GRImageView```.  You can use caching for some instances and not for others if
+you like.
 
 Placeholder Image
 -----------------
