@@ -26,11 +26,18 @@ Animation
 
 By default, the transition from the placeholder image (if any) and the Gravatar image loaded
 from the service is animated with a "cross-dissolve" fade.  You can turn this animation on or off
-via the ```animated``` property.  Animation is on by default.
+via the ```animated``` property.
 
 Caching
 -------
 
-You can also instruct ```GRImageView``` to cache images it fetches from the Gravatar service on
-the device so they are available for later offline use.  Caching can be turned on or off via the
+You can instruct ```GRImageView``` to cache images it fetches from the Gravatar service on the
+device so they are available for later offline use.  Caching can be turned on or off via the
 ```allowImageCaching``` property.  Caching is off by default.
+
+Placeholder Image
+-----------------
+
+You can specify the image a ```GRImageView``` displays while it is loading a Gravatar image from
+the service by setting the ```placeholderImage``` property.  By default no placeholder image is
+displayed.
