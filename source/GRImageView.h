@@ -39,7 +39,7 @@
   NSString        * _gravatarDigest;
   UIImage         * _placeholderImage;
   UIImage         * _gravatarImage;
-  UIImageView     * _imageView;
+  UIView          * _imageView;
   NSURLConnection * _workingConnection;
   NSMutableData   * _workingBuffer;
   long long         _workingExpectedContentLength;
@@ -47,6 +47,8 @@
   BOOL              _animated;
   
 }
+
+-(id)initWithFrame:(CGRect)frame imageView:(UIView *)imageView;
 
 @property (readwrite, retain) NSString  * emailAddress;
 @property (readwrite, retain) UIImage   * placeholderImage;

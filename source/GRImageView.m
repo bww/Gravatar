@@ -71,12 +71,29 @@ static const UniChar kGRImageViewHexCharacters[] = {
  * Designated initializer
  */
 -(id)initWithFrame:(CGRect)frame {
+  return [self initWithFrame:frame imageView:[[[UIImageView alloc] initWithFrame:self.bounds] autorelease]];
+}
+
+/**
+ * Initialize with a special image view. The provided view must respond
+ * to the selector -(void)setImage:(UIImage *) and be a UIView subclass.
+ */
+-(id)initWithFrame:(CGRect)frame imageView:(UIView *)imageView {
+  
+  if(imageView == nil || ![imageView respondsToSelector:@selector(setImage:)]){
+    NSLog(@"Custom image view provided is not suitable for use with GRImageView");
+    [self release];
+    return nil;
+  }
+  
   if((self = [super initWithFrame:frame]) != nil){
     _animated = TRUE;
-    _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+    _imageView = [imageView retain];
+    _imageView.frame = self.bounds;
     _imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self addSubview:_imageView];
   }
+  
   return self;
 }
 
@@ -121,9 +138,9 @@ static const UniChar kGRImageViewHexCharacters[] = {
 -(void)setPlaceholderImage:(UIImage *)image {
   [_placeholderImage release];
   if((_placeholderImage = [image retain]) != nil){
-    if(_gravatarImage == nil) _imageView.image = _placeholderImage;
+    if(_gravatarImage == nil) [(id)_imageView setImage:_placeholderImage];
   }else{
-    if(_gravatarImage == nil) _imageView.image = nil;
+    if(_gravatarImage == nil) [(id)_imageView setImage:nil];
   }
 }
 
@@ -197,7 +214,7 @@ static const UniChar kGRImageViewHexCharacters[] = {
   
   UIImage *cachedImage;
   if(self.allowImageCaching && (cachedImage = [self loadCachedImageForGravatarDigest:digest]) != nil){
-    _imageView.image = cachedImage;
+    [(id)_imageView setImage:cachedImage];
   }else{
     [self loadRemoteImageForGravatarDigest:digest];
   }
@@ -281,7 +298,7 @@ static const UniChar kGRImageViewHexCharacters[] = {
     if((image = [UIImage imageWithData:_workingBuffer]) != nil){
       
       void (^update)(void) = ^ {
-        _imageView.image = image;
+        [(id)_imageView setImage:image];
       };
       
       if(self.animated){
