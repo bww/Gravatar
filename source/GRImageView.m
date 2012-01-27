@@ -248,7 +248,7 @@ static const UniChar kGRImageViewHexCharacters[] = {
  */
 -(void)loadRemoteImageForGravatarDigest:(NSString *)digest {
   NSURL *url;
-  if((url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.gravatar.com/avatar/%@", digest]]) != nil){
+  if((url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.gravatar.com/avatar/%@?d=404", digest]]) != nil){
     
     if(_workingConnection != nil){
       [_workingConnection cancel];
